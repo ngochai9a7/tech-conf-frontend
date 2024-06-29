@@ -13,8 +13,8 @@ app.config.from_object('config.DevelopmentConfig')
 
 app.secret_key = app.config.get('SECRET_KEY')
 
-queue_client = QueueClient.from_connection_string(app.config.get('Endpoint=sb://techcon.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=ol4Q+iEGunzyZMgsRbCPpKjVVmo0Z3Qrf+ASbIJuswM='),
-                                                 app.config.get('notificationqueue'))
+queue_client = QueueClient.from_connection_string(app.config.get('SERVICE_BUS_CONNECTION_STRING'),
+                                                 app.config.get('SERVICE_BUS_QUEUE_NAME'))
 
 class Attendee(db.Model):
     id = db.Column(db.Integer, primary_key=True)

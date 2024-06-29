@@ -113,11 +113,13 @@ def notification():
         notification.submitted_date = datetime.utcnow()
 
         try:
-            db.session.add(notification)
+            db.session.add(notification)        
             db.session.commit()
 
-            message = ServiceBusMessage(str(notification.id))
-            queue_client.send_messages(message)
+            notification_id = notification.id
+
+            msg = Message(str(notification_id))
+            queue_client.send(msg)          
 
             return redirect('/Notifications')
         except :

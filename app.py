@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from flask import Flask, render_template, url_for, request, redirect, flash, make_response, session
 from flask_sqlalchemy import SQLAlchemy 
-from azure.servicebus import ServiceBusClient, ServiceBusMessage
+from azure.servicebus import QueueClient, Message
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 import logging
